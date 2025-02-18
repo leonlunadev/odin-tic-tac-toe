@@ -22,13 +22,56 @@ const gameBoard = (function () {
 
   const getValue = (x, y) => gameArray[x][y];
 
+  const arePointsEqual = (point1, point2, point3, marker) => {
+    const [x1, y1] = point1;
+    const [x2, y2] = point2;
+    const [x3, y3] = point3;
+
+    return (
+      gameArray[x1][y1] === marker &&
+      gameArray[x2][y2] === marker &&
+      gameArray[x3][y3] === marker
+    );
+  };
+
+  //  0 1 2
+  //0
+  //1
+  //2
+  const checkWinner = (marker) => {
+    return (
+      arePointsEqual([0, 0], [1, 1], [2, 2], marker) || // Diagonal
+      arePointsEqual([2, 0], [1, 1], [0, 2], marker) || // Diagonal
+      arePointsEqual([0, 0], [0, 1], [0, 2], marker) || // Row 0
+      arePointsEqual([1, 0], [1, 1], [1, 2], marker) || // Row 1
+      arePointsEqual([2, 0], [2, 1], [2, 2], marker) || // Row 2
+      arePointsEqual([0, 0], [1, 0], [2, 0], marker) || // Column 0
+      arePointsEqual([0, 1], [1, 1], [2, 1], marker) || // Column 1
+      arePointsEqual([0, 2], [1, 2], [2, 2], marker) // Column 2
+    );
+  };
+
   return {
     resetGameBoard,
     setValue,
     getValue,
     viewGameBoard,
+    checkWinner,
   };
 })();
+
+function createPlayer(name, marker) {
+  this.name = name;
+  this.marker = marker;
+}
+
+const displayController = (function () {})();
+
+function game(player1, player2, gameboard) {
+  let turns = 0;
+
+  while (turns < 10) {}
+}
 
 // Test if the script is running
 console.log("Script is running!");
@@ -38,3 +81,17 @@ gameBoard.setValue(0, 0, "x");
 gameBoard.viewGameBoard();
 
 console.log(gameBoard.getValue(0, 0));
+
+gameBoard.resetGameBoard();
+gameBoard.viewGameBoard();
+
+const player1 = createPlayer("Adam Smith", "x");
+const player2 = createPlayer("George Washington", "o");
+
+gameBoard.setValue(0, 0, "x");
+
+gameBoard.setValue(1, 1, "x");
+
+gameBoard.setValue(2, 2, "x");
+console.log(gameBoard.checkWinner("x"));
+gameBoard.viewGameBoard();
