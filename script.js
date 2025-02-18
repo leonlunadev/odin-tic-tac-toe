@@ -63,35 +63,24 @@ const gameBoard = (function () {
 function createPlayer(name, marker) {
   this.name = name;
   this.marker = marker;
+  return { name, marker };
 }
 
 const displayController = (function () {})();
 
 function game(player1, player2, gameboard) {
-  let turns = 0;
-
-  while (turns < 10) {}
+  gameBoard.setValue(0, 0, player1.marker);
+  gameBoard.setValue(0, 1, player2.marker);
+  gameBoard.setValue(0, 2, player1.marker);
+  gameBoard.setValue(1, 1, player2.marker);
+  gameBoard.setValue(1, 2, player1.marker);
+  gameBoard.setValue(2, 1, player2.marker);
+  gameBoard.viewGameBoard();
+  console.log(gameBoard.checkWinner(player2.marker));
 }
-
-// Test if the script is running
-console.log("Script is running!");
-gameBoard.viewGameBoard(); // This will show the initial empty board
-
-gameBoard.setValue(0, 0, "x");
-gameBoard.viewGameBoard();
-
-console.log(gameBoard.getValue(0, 0));
-
-gameBoard.resetGameBoard();
-gameBoard.viewGameBoard();
 
 const player1 = createPlayer("Adam Smith", "x");
 const player2 = createPlayer("George Washington", "o");
 
-gameBoard.setValue(0, 0, "x");
-
-gameBoard.setValue(1, 1, "x");
-
-gameBoard.setValue(2, 2, "x");
-console.log(gameBoard.checkWinner("x"));
-gameBoard.viewGameBoard();
+console.log(player1, player2);
+game(player1, player2, gameBoard);
