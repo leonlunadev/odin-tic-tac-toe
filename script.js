@@ -83,4 +83,5 @@ const player1 = createPlayer("Adam Smith", "x");
 const player2 = createPlayer("George Washington", "o");
 
 console.log(player1, player2);
+
 game(player1, player2, gameBoard);

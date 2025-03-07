@@ -1,0 +1,24 @@
+body {
+  background-color: blue;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#gameboard {
+  display: grid;
+  grid-auto-flow: default;
+  height: 50vh;
+  width: 50vh;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.square {
+  background-color: green;
+  border: solid 1px yellow;
+  gap: 10px;
+}
+
+#2 {
+  background-color: red;
+}
