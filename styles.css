@@ -1,8 +1,8 @@
 body {
   background-color: white;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   height: 100vh;
 }
 #gameboard {
@@ -16,8 +16,14 @@ body {
 
 .square {
   background-color: white;
-
+  cursor: pointer;
   gap: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.square:hover {
+  background-color: cyan;
 }
 
 #one {

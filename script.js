@@ -51,12 +51,45 @@ const gameBoard = (function () {
     );
   };
 
+  const translateID = (id) => {
+    switch (id) {
+      case "one":
+        return [0, 0];
+        break;
+      case "two":
+        return [0, 1];
+        break;
+      case "three":
+        return [0, 2];
+        break;
+      case "four":
+        return [1, 0];
+        break;
+      case "five":
+        return [1, 1];
+        break;
+      case "six":
+        return [1, 2];
+        break;
+      case "seven":
+        return [2, 0];
+        break;
+      case "eight":
+        return [2, 1];
+        break;
+      case "nine":
+        return [2, 2];
+        break;
+    }
+  };
+
   return {
     resetGameBoard,
     setValue,
     getValue,
     viewGameBoard,
     checkWinner,
+    translateID,
   };
 })();
 
@@ -85,3 +118,48 @@ const player2 = createPlayer("George Washington", "o");
 console.log(player1, player2);
 
 game(player1, player2, gameBoard);
+
+gameBoard.resetGameBoard();
+
+const createO = () => {
+  return `<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="50" r="30" stroke="red" stroke-width="8" fill="none" stroke-linecap="round"/>
+    </svg>`;
+};
+
+const createX = () => {
+  return `<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <line x1="20" y1="20" x2="80" y2="80" stroke="black" stroke-width="8" stroke-linecap="round"/>
+      <line x1="80" y1="20" x2="20" y2="80" stroke="black" stroke-width="8" stroke-linecap="round"/>
+  </svg>`;
+};
+
+let turn = 0;
+
+const clicked = (e) => {
+  const squareElement = e.target.closest(".square");
+  const clickedPoint = gameBoard.translateID(squareElement.id);
+  if (gameBoard.getValue(clickedPoint[0], clickedPoint[1]) == "") {
+    if (turn % 2 == 0) {
+      e.target.innerHTML = createX();
+      gameBoard.setValue(clickedPoint[0], clickedPoint[1], "x");
+      turn += 1;
+      //check winner
+    } else {
+      e.target.innerHTML = createO();
+      gameBoard.setValue(clickedPoint[0], clickedPoint[1], "o");
+      turn += 1;
+    }
+  } else {
+    squareElement.style.backgroundColor = "orange";
+    setTimeout(() => {
+      squareElement.style.backgroundColor = "white";
+    }, 500);
+  }
+};
+
+let squares = document.getElementsByClassName("square");
+
+for (let i = 0; i < squares.length; i++) {
+  squares[i].addEventListener("click", clicked);
+}
