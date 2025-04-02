@@ -142,19 +142,24 @@ const clicked = (e) => {
   if (gameBoard.getValue(clickedPoint[0], clickedPoint[1]) == "") {
     if (turn % 2 == 0) {
       e.target.innerHTML = createX();
-      gameBoard.setValue(clickedPoint[0], clickedPoint[1], "x");
-      turn += 1;
-      //check winner
+      gameBoard.setValue(clickedPoint[0], clickedPoint[1], "0");
     } else {
       e.target.innerHTML = createO();
-      gameBoard.setValue(clickedPoint[0], clickedPoint[1], "o");
-      turn += 1;
+      gameBoard.setValue(clickedPoint[0], clickedPoint[1], "1");
     }
+
+    if (turn > 3) {
+      console.log(turn);
+      if (gameBoard.checkWinner(String(turn % 2))) {
+        alert(turn % 2);
+      }
+    }
+    turn += 1;
   } else {
     squareElement.style.backgroundColor = "orange";
     setTimeout(() => {
       squareElement.style.backgroundColor = "white";
-    }, 500);
+    }, 250);
   }
 };
 
