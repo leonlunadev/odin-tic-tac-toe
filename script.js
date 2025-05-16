@@ -163,8 +163,17 @@ const clicked = (e) => {
   }
 };
 
-let squares = document.getElementsByClassName("square");
+const startGame = (e) => {
+  e.target.innerHTML = "Restart";
+  gameBoard.resetGameBoard();
 
-for (let i = 0; i < squares.length; i++) {
-  squares[i].addEventListener("click", clicked);
-}
+  let squares = document.getElementsByClassName("square");
+
+  for (let i = 0; i < squares.length; i++) {
+    squares[i].innerHTML = "";
+    squares[i].addEventListener("click", clicked);
+  }
+};
+
+let start = document.getElementById("start");
+start.addEventListener("click", startGame);
