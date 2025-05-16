@@ -170,6 +170,7 @@ const startGame = (e) => {
   let squares = document.getElementsByClassName("square");
 
   for (let i = 0; i < squares.length; i++) {
+    turn = 0;
     squares[i].innerHTML = "";
     squares[i].addEventListener("click", clicked);
   }
