@@ -3,6 +3,15 @@ body {
   margin: 100px;
 }
 
+button {
+  background: white;
+
+  width: 100px;
+  height: 25px;
+  cursor: pointer;
+  font-weight: 600px;
+}
+
 .container {
   display: grid;
   grid-template-rows: 1fr 2fr;
@@ -57,7 +66,6 @@ body {
 }
 
 .square {
-  background-color: white;
   cursor: pointer;
   gap: 10px;
   display: flex;
@@ -65,7 +73,7 @@ body {
   align-items: center;
 }
 .square:hover {
-  background-color: cyan;
+  background-color: #bc13fe;
 }
 
 #one {
